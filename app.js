@@ -1,3 +1,4 @@
+'use-strict';
 const metalsmith = require('metalsmith');
 const markdown = require('metalsmith-markdown');
 const layouts = require('metalsmith-layouts');
@@ -7,15 +8,13 @@ const cleanCss = require('metalsmith-clean-css');
 const concat = require('metalsmith-concat');
 const sass = require('metalsmith-sass');
 const handlebars = require('handlebars');
-const moment = require('moment');
-const fs = require('fs');
 const collections = require('metalsmith-collections');
+const watch = require('metalsmith-watch');
+const excerpts = require('metalsmith-excerpts');
 
-handlebars.registerHelper("prettifyDate", function(timestamp){
-  return moment(timestamp.getTime()).format('YYYY-MM-DD');
-});
-handlebars.registerPartial('header', fs.readFileSync(__dirname + '/layouts/partials/header.hbt').toString());
-handlebars.registerPartial('footer', fs.readFileSync(__dirname + '/layouts/partials/footer.hbt').toString());
+const initHandlebars = require('./buildSrc/handlebarsInit');
+
+initHandlebars(__dirname);
 
 metalsmith(__dirname)
   .source('./src')
@@ -26,17 +25,17 @@ metalsmith(__dirname)
     generator: "Metalsmith",
     url: "http://www.metalsmith.io"
   })
-  .use(markdown())
   .use(collections({
     posts: {
-      pattern: 'content/posts/*.md',
+      pattern: '**/posts/*.md',
       sortBy: 'date',
       reverse: true
     },
     pages: {
-      pattern: 'content/pages/*.md'
+      pattern: '**/pages/*.md'
     }
   }))
+  .use(markdown())
   .use(permalinks({
     pattern: ':title',
     date: 'YYYY',
@@ -61,6 +60,14 @@ metalsmith(__dirname)
     files: 'styles/app.css'
   }))
  .use(browserSync())
+ .use(excerpts())
+ .use(watch({
+   paths: {
+     '${source}/**/*.md': true,
+     'layouts/**/*': '**/*',
+     '${source}/styles/*.scss': '**/*' 
+   }
+ }))
  .destination('./build')
   .build(function errorCallback(err){
       if(err) throw err;

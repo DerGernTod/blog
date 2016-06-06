@@ -1,0 +1,26 @@
+$postBgCol: #fcfcfc;
+body,html,header{
+  margin: 0;
+  padding: 0;
+}
+header{
+  display:flex;
+  text-align: center;
+  font: Calibri, Arial;
+  background: #fafafa;
+  width: 100%;
+  height: 15em;
+  border-bottom: 1px solid #f0f0f0
+}
+article{
+  $postBgColOffset: 3;
+  margin: 0 12.5%;
+  background-color: $postBgCol;
+  border-bottom: 1px solid $postBgCol - $postBgColOffset - 1;
+  display:flex;
+  padding: 1em;
+  &:nth-child(2n){
+    background-color: $postBgCol - $postBgColOffset;
+    border-bottom: 1px solid $postBgCol - $postBgColOffset - 1;
+  } 
+}

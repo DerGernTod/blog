@@ -3,15 +3,17 @@
   "version": "1.0.0",
   "description": "Test with metalsmith",
   "main": "app.js",
-  
   "dependencies": {
     "fs": "0.0.2",
+    "gulp": "^3.9.1",
+    "gulp-util": "^3.0.7",
     "handlebars": "^4.0.5",
     "metalsmith": "^2.1.0",
     "metalsmith-browser-sync": "^1.1.1",
     "metalsmith-clean-css": "^4.0.0",
     "metalsmith-collections": "^0.7.0",
     "metalsmith-concat": "^5.0.2",
+    "metalsmith-excerpts": "^1.1.0",
     "metalsmith-layouts": "^1.6.5",
     "metalsmith-markdown": "^0.2.1",
     "metalsmith-permalinks": "^0.5.0",

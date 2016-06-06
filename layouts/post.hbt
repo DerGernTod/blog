@@ -1,24 +1,7 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <title>{{ title }}</title>
-  <meta name="description" content="{{ description }}">
-  <link rel="stylesheet" type="text/css" href="../../styles/app.css">
-</head>
-<body>
-  <header>
-    <p>
-      <a href="/">Home</a>
-    </p>
-
-  </header>
+{{> header}}
   <h1>{{ title }}</h1>
   <time>{{ prettifyDate date }}</time>
+  <div class='post'>
   {{{ contents }}}
-
-  <footer>
-    <p>Generated with {{ generator }} &mdash; <a href="{{ url }}">{{ url }}</a></p>
-  </footer>
-</body>
-</html>
+  </div>
+{{> footer}}
