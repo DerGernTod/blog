@@ -3,14 +3,14 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Metalsmith Test Site</title>
+        <title>Nodeblog</title>
         <meta name="viewport" content="width=device-width">
         <link rel="stylesheet" type="text/css" href="/styles/app.css">
     </head>
     <body>
 
         <header>
-            <h1 class="logo"><a href="/">Metalsmith Test Site</a></h1>
+            <h1 class="logo"><a href="/">Nodeblog</a></h1>
         </header>
 
 

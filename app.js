@@ -11,7 +11,7 @@ const handlebars = require('handlebars');
 const collections = require('metalsmith-collections');
 const watch = require('metalsmith-watch');
 const excerpts = require('metalsmith-excerpts');
-
+const fontBuilder = require('./buildSrc/fontBuilder');
 const initHandlebars = require('./buildSrc/handlebarsInit');
 
 initHandlebars(__dirname);
@@ -52,18 +52,27 @@ metalsmith(__dirname)
   }))
   .use(layouts('handlebars'))
   .use(sass())
+  .use(fontBuilder('styles'))
+  .use((function fileCheck(){
+    return function metalSmithFileCheck(files, metalsmith, done){
+      done();
+    }
+  })())
   .use(concat({
-    files: 'styles/**/*.css',
-    output: 'styles/app.css'
+    files: 'styles/*.css',
+    output: 'styles/app.css',
+    forceOutput: true
   }))
   .use(cleanCss({
     files: 'styles/app.css'
   }))
- .use(browserSync())
  .use(excerpts())
+ .use(browserSync({
+   port: 55555
+ }))
  .use(watch({
    paths: {
-     '${source}/**/*.md': true,
+     '${source}/**/*.md': '**/*',
      'layouts/**/*': '**/*',
      '${source}/styles/*.scss': '**/*' 
    }
