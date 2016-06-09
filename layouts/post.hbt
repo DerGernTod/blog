@@ -1,7 +1,0 @@
-{{> header}}
-  <h1>{{ title }}</h1>
-  <time>{{ prettifyDate date }}</time>
-  <div class='post'>
-  {{{ contents }}}
-  </div>
-{{> footer}}

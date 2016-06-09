@@ -1,0 +1,24 @@
+{{> header}}
+  <article>
+  <h1>{{ title }}</h1>
+  <time>{{ prettifyDate date }}</time>
+  {{{ contents }}}
+  <div id="disqus_thread"></div>
+  </article>
+<script>
+    var disqus_config = function () {
+        this.page.url = "{{host}}{{path}}";  
+        this.page.identifier = "nodeblog-{{title}}-{{prettifyDate date}}"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    
+    (function() {  
+        var d = document, s = d.createElement('script');
+        
+        s.src = '//technodeblog.disqus.com/embed.js';
+        
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+{{> footer}}

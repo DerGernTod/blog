@@ -1,21 +1,12 @@
-$postBgCol: #fcfcfc;
-body,html,header{
+$postBgCol: #ffc244 + 20;
+$postBorderCol: #ffc244 + 50;
+body,html{
   margin: 0;
   padding: 0;
   font-family: CaviarDreams,sans-serif
 }
-header{
-  display:block;
-  text-align: center;
-  font: Calibri, Arial;
-  background: #fafafa;
-  width: 100%;
-  height: 15em;
-  padding: 30px 0;
-  border-bottom: 1px solid #f0f0f0;
-}
 a{
-  $linkCol: #777;
+  $linkCol: #444;
   text-decoration: underline dotted;
   color: $linkCol;
   transition: .2s linear;
@@ -26,13 +17,45 @@ a{
 }
 article{
   $postBgColOffset: 3;
-  margin: 0 12.5%;
   background-color: $postBgCol;
-  border-bottom: 1px solid $postBgCol - $postBgColOffset - 1;
+  border-bottom: 1px solid $postBorderCol - 10;
+  border-top: 1px solid $postBorderCol;
   display:flex;
-  padding: 1em;
+  flex-direction: column;
+  padding: 2em 12% 2em;
+  width: 100%;
+  box-sizing: border-box;
+  &:hover{
+    background-color: $postBgCol + 5;
+  }
+  h2{
+    margin: 0;
+    padding: 0;
+    text-transform: capitalize;
+    font-family: CaviarDreams_Bold,sans-serif;
+    a{
+      text-decoration: none;
+      &:hover{
+        text-decoration: none;
+      }
+    }
+  }
+  p{
+    margin: 1em 0;
+  }
+  transition: .2s linear;
+  &:nth-child(1){
+    border-top: none;
+  }
   &:nth-child(2n){
     background-color: $postBgCol - $postBgColOffset;
-    border-bottom: 1px solid $postBgCol - $postBgColOffset - 1;
+    //border-bottom: 1px solid $postBgCol - $postBgColOffset - 10;
+    border: none;
+    
+    &:hover{
+      transition: .2s linear;
+      background-color: $postBgCol - $postBgColOffset + 5;
+    }
   } 
+  
 }

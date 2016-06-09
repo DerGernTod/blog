@@ -11,10 +11,10 @@ const handlebars = require('handlebars');
 const collections = require('metalsmith-collections');
 const watch = require('metalsmith-watch');
 const excerpts = require('metalsmith-excerpts');
+const ignore = require('metalsmith-ignore');
 const fontBuilder = require('./buildSrc/fontBuilder');
 const initHandlebars = require('./buildSrc/handlebarsInit');
 
-initHandlebars(__dirname);
 
 metalsmith(__dirname)
   .source('./src')
@@ -23,7 +23,8 @@ metalsmith(__dirname)
     title: "Metalsmith Test",
     description: "Hello world!",
     generator: "Metalsmith",
-    url: "http://www.metalsmith.io"
+    url: "http://www.metalsmith.io",
+    host: "http://node.radiatedpixel.com:5555/"
   })
   .use(collections({
     posts: {
@@ -36,6 +37,7 @@ metalsmith(__dirname)
     }
   }))
   .use(markdown())
+  .use(excerpts())
   .use(permalinks({
     pattern: ':title',
     date: 'YYYY',
@@ -50,14 +52,13 @@ metalsmith(__dirname)
       }
     ]
   }))
-  .use(layouts('handlebars'))
+  .use(initHandlebars())
+  .use(layouts({
+    'engine' : 'handlebars',
+    'directory' : './src/layouts'
+  }))
   .use(sass())
   .use(fontBuilder('styles'))
-  .use((function fileCheck(){
-    return function metalSmithFileCheck(files, metalsmith, done){
-      done();
-    }
-  })())
   .use(concat({
     files: 'styles/*.css',
     output: 'styles/app.css',
@@ -66,14 +67,19 @@ metalsmith(__dirname)
   .use(cleanCss({
     files: 'styles/app.css'
   }))
- .use(excerpts())
+ .use(ignore([
+   'assets/fonts/**',
+   'layouts/**',
+   'styles/*.scss'
+ ]))
  .use(browserSync({
-   port: 55555
+   port: 55555,
+   files: "./build/**/*.*"
  }))
  .use(watch({
    paths: {
      '${source}/**/*.md': '**/*',
-     'layouts/**/*': '**/*',
+     '${source}/layouts/**/*': '**/*',
      '${source}/styles/*.scss': '**/*' 
    }
  }))

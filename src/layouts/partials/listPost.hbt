@@ -1,0 +1,6 @@
+
+<article>
+    <h2><a href="/{{this.path}}">{{this.title}}</a></h2>
+    {{{this.excerpt}}}
+    <a href="/{{this.path}}">Read more...</a>
+</article>

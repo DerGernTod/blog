@@ -1,0 +1,5 @@
+{{> header showHello=true}}
+    {{#each collections.posts}}
+    {{> listPost this}}
+    {{/each}}
+{{> footer}}

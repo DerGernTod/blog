@@ -8,10 +8,10 @@
         <link rel="stylesheet" type="text/css" href="/styles/app.css">
     </head>
     <body>
-
         <header>
             <h1 class="logo"><a href="/">Nodeblog</a></h1>
+            {{#if showHello}}
+            <h2>Nice to meet you. Call me Node.</h2>
+            {{/if}}
         </header>
-
-
-        <div class="main-wrapper">
+        <main>
