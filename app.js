@@ -14,7 +14,7 @@ const excerpts = require('metalsmith-excerpts');
 const ignore = require('metalsmith-ignore');
 const fontBuilder = require('./buildSrc/fontBuilder');
 const initHandlebars = require('./buildSrc/handlebarsInit');
-
+const imagePreview = require('./buildSrc/imagePreview');
 
 metalsmith(__dirname)
   .source('./src')
@@ -37,6 +37,7 @@ metalsmith(__dirname)
     }
   }))
   .use(markdown())
+  .use(imagePreview())
   .use(excerpts())
   .use(permalinks({
     pattern: ':title',
@@ -44,7 +45,7 @@ metalsmith(__dirname)
     linksets: [{
         match: { collection: 'posts' },
         pattern: 'posts/:date/:title',
-        date: 'YYYY-MM-DD'
+        date: 'YYYY/MM/DD'
       },
       {
         match: {collection: 'pages' },

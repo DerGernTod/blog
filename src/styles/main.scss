@@ -14,14 +14,24 @@ a{
     color: $linkCol + 50;
     text-decoration: underline dotted transparent;
   }
+  &.readMore{
+    padding: .5em;
+    &:hover{
+      color: white;
+      background-color: #5881ef;
+    }
+    &:active{
+      color: white;
+      background-color: #58ffd7;
+      transition: none;
+    }
+  }
 }
 article{
   $postBgColOffset: 3;
   background-color: $postBgCol;
   border-bottom: 1px solid $postBorderCol - 10;
   border-top: 1px solid $postBorderCol;
-  display:flex;
-  flex-direction: column;
   padding: 2em 12% 2em;
   width: 100%;
   box-sizing: border-box;

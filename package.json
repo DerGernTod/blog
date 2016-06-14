@@ -6,6 +6,7 @@
   "dependencies": {
     "fontmin": "^0.9.6",
     "fs": "0.0.2",
+    "gm": "^1.22.0",
     "gulp": "^3.9.1",
     "gulp-util": "^3.0.7",
     "handlebars": "^4.0.5",
